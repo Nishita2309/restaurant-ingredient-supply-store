@@ -24,7 +24,6 @@ urlpatterns = [
     path('my-orders/', views.view_orders, name='view_orders'),
     path('place-order/', views.place_order, name='place_order'),
     path('orders/', views.order_history, name='order_history'),
-    path('orders/', views.order_history, name='order_history'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('profile/', views.profile, name='profile'),
 

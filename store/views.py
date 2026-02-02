@@ -209,3 +209,37 @@ def profile(request):
 def profile(request):
     embed = request.GET.get('embed') == 'true'
     return render(request, 'store/profile.html', {'embed': embed})
+
+def accounts_view(request):
+    return render(request, 'accounts.html')
+
+def login_view(request):
+    template = 'store/login.html' if request.GET.get('embed') != 'true' else 'store/login_embed.html'
+    return render(request, template)
+
+
+def login_view(request):
+    if request.GET.get('embed') == 'true':
+        return render(request, 'store/login.html')  # or login_embed.html if you created it
+    else:
+        return render(request, 'store/login.html')  # regular page load
+
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.contrib import messages
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')  # or wherever you want to redirect
+        else:
+            messages.error(request, 'Invalid username or password')
+
+    # Handle embed mode
+    if request.GET.get('embed') == 'true':
+        return render(request, 'store/login.html')  # or 'store/login_embed.html' if you have a separate one
+    return render(request, 'store/login.html')

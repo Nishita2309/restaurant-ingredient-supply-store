@@ -19,16 +19,23 @@
             </div>
         </div>
 
-        <!-- Content area with a single iframe -->
-        <div class="col-md-9" style="height: 80vh;">
-            <iframe 
-                name="accountFrame" 
-                src="{% url 'dashboard' %}?embed=true" 
-                width="100%" 
-                height="100%" 
-                frameborder="0"
-                style="border: none; min-height: 100%;">
-            </iframe>
+        <!-- Content area with iframe -->
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    Account Panel
+                </div>
+                <div class="card-body" style="min-height: 600px;">
+                    <iframe 
+                        name="accountFrame" 
+                        src="{% url 'dashboard' %}?embed=true" 
+                        width="100%" 
+                        height="550" 
+                        frameborder="0" 
+                        style="border-radius: 10px; overflow: auto;">
+                    </iframe>
+                </div>
+            </div>
         </div>
     </div>
 </div>
